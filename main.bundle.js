@@ -27,7 +27,7 @@ module.exports = ""
 /***/ "./src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div class=\"container\">\n  <app-weapon-upload></app-weapon-upload> \n</div>"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div class=\"container\" style=\"background-color:white;height:640px;margin-top:20px\">\n  <app-weapon-upload></app-weapon-upload> \n</div>"
 
 /***/ }),
 
@@ -121,7 +121,7 @@ module.exports = ""
 /***/ "./src/app/components/weapon-upload/weapon-upload.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n\n<div class=\"form-group\">\n  <label for=\"file\">Choose File</label>\n  <input type=\"file\" id=\"file\" (change)=\"handleFileInput($event.target.files)\">\n</div>\n\n<button *ngIf=\"showUploadButton\" class=\"btn btn-primary\" (click)=\"uploadFileToActivity()\">Upload</button>\n\n<div *ngIf=\"results\">\n  <ol>\n    <li *ngFor=\"let result of results\">{{ result.Tag}} - {{ result.Probability }} </li>\n  </ol>\n</div>\n\n<div *ngIf=\"busy\">\n  Loading...\n</div>"
+module.exports = "<h1>\n  Weapons Classifier\n  <small class=\"text-muted\">AR15 - AK47</small>\n</h1>\n<hr />\n\n<p>\n  Simple image classification model with <b>815 AK47</b> images and <b>440 AR15</b> images downloaded from image search on Bing.\n</p>\n\n<p>Models trained and predictions done at\n  <a href=\"https://customvision.ai\">Custom Vision</a>\n</p>\n\n<hr />\n\n<p>Step 1 - Choose an image that contains an AR15, AK47 or neither</p>\n<div class=\"form-group\">\n  <label for=\"file\">Choose File</label>\n  <input type=\"file\" id=\"file\" (change)=\"handleFileInput($event.target.files)\">\n</div>\n\n<div *ngIf=\"showUploadButton\" >\n  <p>Step 2 - Press Upload</p>\n  <button class=\"btn btn-primary\" (click)=\"uploadFileToActivity()\">Upload</button>\n</div>\n\n\n<div *ngIf=\"results\">\n  <hr />\n  <p>Percentage of certainty</p>\n  <ol>\n    <li *ngFor=\"let result of results\">{{ result.Tag}} - {{ result.Probability }}% </li>\n  </ol>\n</div>\n\n<div *ngIf=\"busy\">\n  Loading...\n</div>"
 
 /***/ }),
 
@@ -163,6 +163,7 @@ var WeaponUploadComponent = /** @class */ (function () {
             _this.results = data.Predictions;
             for (var _i = 0, _a = data.Predictions; _i < _a.length; _i++) {
                 var prediction = _a[_i];
+                prediction.Probability = Math.round(prediction.Probability * 1000) / 10.0;
                 console.log(prediction);
             }
             console.log(data);
