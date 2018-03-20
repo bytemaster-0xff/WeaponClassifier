@@ -174,6 +174,7 @@ var WeaponUploadComponent = /** @class */ (function () {
     WeaponUploadComponent.prototype.handleFileInput = function (files) {
         this.fileToUpload = files.item(0);
         this.showUploadButton = true;
+        this.results = null;
     };
     WeaponUploadComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
