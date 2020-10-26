@@ -1,0 +1,6 @@
+From Root
+
+1) ng build
+2) ng add -f dist
+3) git commmit -m "change notes
+4) git subtree push --prefix=dist origin gh-pages

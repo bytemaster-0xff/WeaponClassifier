@@ -1,0 +1,39 @@
+<h1>
+  Weapons Classifier
+  <small class="text-muted">AR15 - AK47</small>
+</h1>
+<hr />
+
+<p>
+  Simple image classification model with <b>815 AK47</b> images and <b>440 AR15</b> images downloaded from image search on Bing.
+</p>
+
+<p>Models trained and predictions done at
+  <a href="https://customvision.ai">Custom Vision</a>
+</p>
+
+<hr />
+
+<p>Step 1 - Choose an image that contains an AR15, AK47 or neither</p>
+<div class="form-group">
+  <label for="file">Choose File</label>
+  <input type="file" id="file" (change)="handleFileInput($event.target.files)">
+</div>
+
+<div *ngIf="showUploadButton" >
+  <p>Step 2 - Press Upload</p>
+  <button class="btn btn-primary" (click)="uploadFileToActivity()">Upload</button>
+</div>
+
+
+<div *ngIf="results">
+  <hr />
+  <p>Percentage of certainty</p>
+  <ol>
+    <li *ngFor="let result of results">{{ result.Tag}} - {{ result.Probability }}% </li>
+  </ol>
+</div>
+
+<div *ngIf="busy">
+  Loading...
+</div>
